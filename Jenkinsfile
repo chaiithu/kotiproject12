@@ -4,7 +4,7 @@ pipeline {
         stage ('scm') {
             steps {
                 script {
-
+                  checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/chaiithu/kotiproject12.git']])
                 }
             }
         }
@@ -19,8 +19,7 @@ pipeline {
         stage ('push') {
             steps {
                 script {
-                }
-                   
+                 withDockerRegistry(credentialsId: 'docker_cred', url: '') {  
                        sh'''docker push chaithuchaithanya/static'''
                 }
             }
