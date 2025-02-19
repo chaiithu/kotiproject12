@@ -1,7 +1,3 @@
-FROM ubuntu 
-LABEL maintainer address "chaithu"
-RUN apt update 
-RUN apt install apache2 -y
-copy ./index.html /var/www/html
-CMD ["apachectl","-D","FOREGROUND"]
-EXPOSE 80
+FROM nginx 
+copy ./index.html /usr/share/nginx/html
+expose 80
